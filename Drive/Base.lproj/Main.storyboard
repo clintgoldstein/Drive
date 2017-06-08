@@ -21,13 +21,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-Hj-zMv">
-                                <rect key="frame" x="16" y="106" width="343" height="472"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-Hj-zMv">
+                                <rect key="frame" x="0.0" y="70" width="375" height="553"/>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="40k-qF-B6j">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Zoom" id="6Xu-h4-v87">
+                                        <connections>
+                                            <action selector="ZoomIn:" destination="BYZ-38-t0r" id="9xX-QP-C3v"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Type" id="UPp-qn-Lva">
+                                        <connections>
+                                            <action selector="changeMapView:" destination="BYZ-38-t0r" id="Rzh-u5-cVt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="uz6-Hj-zMv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Teh-yf-gkm"/>
+                            <constraint firstItem="uz6-Hj-zMv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="VnQ-xK-Nqb"/>
+                            <constraint firstItem="40k-qF-B6j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Xch-m0-uRA"/>
+                            <constraint firstAttribute="trailing" secondItem="uz6-Hj-zMv" secondAttribute="trailing" id="bsA-G1-nkf"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="40k-qF-B6j" secondAttribute="bottom" id="mZV-wk-JfI"/>
+                            <constraint firstItem="40k-qF-B6j" firstAttribute="top" secondItem="uz6-Hj-zMv" secondAttribute="bottom" id="pSV-GF-0NK"/>
+                            <constraint firstAttribute="trailing" secondItem="40k-qF-B6j" secondAttribute="trailing" id="qw1-rO-N2R"/>
+                            <constraint firstItem="uz6-Hj-zMv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rbx-O1-8XW"/>
+                            <constraint firstAttribute="trailing" secondItem="uz6-Hj-zMv" secondAttribute="trailing" id="uf6-Yz-MUP"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="uz6-Hj-zMv" id="Rcj-UG-Ko4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
