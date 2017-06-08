@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="16p-Ze-fqy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,19 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-Hj-zMv">
-                                <rect key="frame" x="0.0" y="70" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="509"/>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="40k-qF-B6j">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem title="Zoom" id="6Xu-h4-v87">
+                                    <barButtonItem title="Center" id="6Xu-h4-v87">
                                         <connections>
                                             <action selector="ZoomIn:" destination="BYZ-38-t0r" id="9xX-QP-C3v"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="Type" id="UPp-qn-Lva">
-                                        <connections>
-                                            <action selector="changeMapView:" destination="BYZ-38-t0r" id="Rzh-u5-cVt"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -53,11 +48,30 @@
                             <constraint firstAttribute="trailing" secondItem="uz6-Hj-zMv" secondAttribute="trailing" id="uf6-Yz-MUP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="x6b-Qy-NBj"/>
                     <connections>
                         <outlet property="mapView" destination="uz6-Hj-zMv" id="Rcj-UG-Ko4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="137.18140929535232"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x7t-Yz-mku">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="16p-Ze-fqy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QL1-2A-Osy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="KRz-SM-h2e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o2U-7d-04N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
         </scene>
