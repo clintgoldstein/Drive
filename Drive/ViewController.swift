@@ -10,41 +10,75 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    
+    var location:CLLocationManager!
+    var mapCamera: MKMapCamera!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        location = CLLocationManager()
+        location.startUpdatingLocation()
+        location.delegate = self
+        location.startUpdatingHeading()
+        
         mapView.showsUserLocation = true
-        mapView.showsCompass = true
+        mapView.showsCompass = false
         mapView.delegate = self
+     
         
+       mapCamera = MKMapCamera()
+       mapCamera.pitch = 90.0
+       mapCamera.altitude = 300.0
         
+       mapView.setCamera(mapCamera, animated: true)
+        
+      //mapView.setUserTrackingMode(.followWithHeading, animated: true)
+
     }
 
     @IBAction func ZoomIn(_ sender: Any) {
-        //let userLocation = mapView.userLocation
         
         
-        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: 0)
-        mapView.setCamera(mapCamera, animated: true)
+        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
         
-        //let region = MKCoordinateRegionMakeWithDistance(
-          //  userLocation.location!.coordinate, 2000, 2000)
+        mapView.setCamera(mapCamera, animated: false)
         
-        //mapView.setRegion(region, animated: true)
        
     }
 
     func mapView(_ mapView: MKMapView, didUpdate
         userLocation: MKUserLocation) {
-        //mapView.centerCoordinate = userLocation.location!.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(
-            userLocation.location!.coordinate, 2000, 2000)
         
-        mapView.setRegion(region, animated: true)
+        if mapView.userLocation.location?.coordinate != nil
+        {
+        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
+        
+        mapView.setCamera(mapCamera, animated: true)
+        }
     }
+
+ 
+
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        
+        self.mapView.camera.heading = newHeading.trueHeading
+        /*
+        if mapView.userLocation.location?.coordinate != nil
+        {
+            let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
+            
+            mapView.setCamera(mapCamera, animated: false)
+        }
+        */
+    }
+    
+    
+    
+    
+ 
 }
 
