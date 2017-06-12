@@ -10,11 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
+    @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
     var location:CLLocationManager!
     var mapCamera: MKMapCamera!
+    var direction = 0.0
+    var camera_set = false
+    var newMedia: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,57 +29,54 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         location.startUpdatingHeading()
         
         mapView.showsUserLocation = true
-        mapView.showsCompass = false
+        mapView.showsTraffic = false
         mapView.delegate = self
-     
         
-       mapCamera = MKMapCamera()
-       mapCamera.pitch = 90.0
-       mapCamera.altitude = 300.0
         
-       mapView.setCamera(mapCamera, animated: true)
+        mapView.setUserTrackingMode(.followWithHeading, animated: true)
         
-      //mapView.setUserTrackingMode(.followWithHeading, animated: true)
-
+        
     }
+    
 
     @IBAction func ZoomIn(_ sender: Any) {
+       
+        mapView.setUserTrackingMode(.followWithHeading, animated: true)
         
-        
-        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
-        
+        /*
+        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: direction)
         mapView.setCamera(mapCamera, animated: false)
         
-       
-    }
-
-    func mapView(_ mapView: MKMapView, didUpdate
-        userLocation: MKUserLocation) {
-        
-        if mapView.userLocation.location?.coordinate != nil
-        {
-        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
-        
-        mapView.setCamera(mapCamera, animated: true)
-        }
-    }
-
- 
-
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        
-        self.mapView.camera.heading = newHeading.trueHeading
-        /*
-        if mapView.userLocation.location?.coordinate != nil
-        {
-            let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: self.mapView.camera.heading)
-            
-            mapView.setCamera(mapCamera, animated: false)
-        }
+        camera_set = true
         */
     }
+
     
+    
+    
+    
+/******************************************************************
+ **         methods used attemting pitched follow                **
+ ******************************************************************
+    
+ func mapView(_ mapView: MKMapView, didUpdate
+        userLocation: MKUserLocation) {
+        //  self.mapView.setCenter((userLocation.location?.coordinate)!, animated: true)
+        if mapView.userLocation.location?.coordinate != nil
+        {
+        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: direction)
+        mapView.setCamera(mapCamera, animated: false)
+        }
+    }
+
+
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+       direction = newHeading.magneticHeading
+       //self.mapView.camera.heading = newHeading.magneticHeading
+    }
+
+     
+*/
     
     
     

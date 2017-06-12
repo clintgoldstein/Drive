@@ -14,7 +14,6 @@
 		A23D73751EE8733500BAE81D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A23D73731EE8733500BAE81D /* LaunchScreen.storyboard */; };
 		A23D73801EE8733500BAE81D /* DriveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D737F1EE8733500BAE81D /* DriveTests.swift */; };
 		A23D738B1EE8733500BAE81D /* DriveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D738A1EE8733500BAE81D /* DriveUITests.swift */; };
-		A23D739A1EE91C9C00BAE81D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A23D73991EE91C9C00BAE81D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		A23D73861EE8733500BAE81D /* DriveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A23D738A1EE8733500BAE81D /* DriveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveUITests.swift; sourceTree = "<group>"; };
 		A23D738C1EE8733500BAE81D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A23D73991EE91C9C00BAE81D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A23D739A1EE91C9C00BAE81D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +129,6 @@
 		A23D73981EE91C9C00BAE81D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A23D73991EE91C9C00BAE81D /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,6 +203,11 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = D9Q3AX9795;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					A23D737A1EE8733500BAE81D = {
 						CreatedOnToolsVersion = 8.3;
@@ -520,6 +521,7 @@
 				A23D73911EE8733500BAE81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A23D73921EE8733500BAE81D /* Build configuration list for PBXNativeTarget "DriveTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +530,7 @@
 				A23D73941EE8733500BAE81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A23D73951EE8733500BAE81D /* Build configuration list for PBXNativeTarget "DriveUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +539,7 @@
 				A23D73971EE8733500BAE81D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
