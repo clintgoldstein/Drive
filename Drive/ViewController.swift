@@ -9,16 +9,19 @@
 import UIKit
 import MapKit
 import CoreLocation
+import AVFoundation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
-    @IBOutlet weak var ImageView: UIImageView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var previewView: UIImageView!
     var location:CLLocationManager!
     var mapCamera: MKMapCamera!
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    var stillImageOutput: AVCapturePhotoOutput?
+    var session: AVCaptureSession?
     var direction = 0.0
-    var camera_set = false
-    var newMedia: Bool?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +45,47 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBAction func ZoomIn(_ sender: Any) {
        
         mapView.setUserTrackingMode(.followWithHeading, animated: true)
-        
-        /*
-        let mapCamera = MKMapCamera(lookingAtCenter: mapView.userLocation.location!.coordinate, fromDistance: 400.0, pitch: 90.0, heading: direction)
-        mapView.setCamera(mapCamera, animated: false)
-        
-        camera_set = true
-        */
+
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        session = AVCaptureSession()
+        session!.sessionPreset = AVCaptureSessionPresetPhoto
+        let backCamera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        var error: NSError?
+        var input: AVCaptureDeviceInput!
+        do {
+            input = try AVCaptureDeviceInput(device: backCamera)
+        } catch let error1 as NSError {
+            error = error1
+            input = nil
+            print(error!.localizedDescription)
+        }
+        
+        if error == nil && session!.canAddInput(input) {
+            session!.addInput(input)
+            
+            stillImageOutput = AVCapturePhotoOutput()
+            
+            if session!.canAddOutput(stillImageOutput) {
+                session!.addOutput(stillImageOutput)
+                videoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
+                //videoPreviewLayer!.videoGravity = AVLayerVideoGravityResizeAspect
+                //videoPreviewLayer!.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+                previewView.layer.addSublayer(videoPreviewLayer!)
+                session!.startRunning()
+                
+            }
+        }
+        
+        
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        videoPreviewLayer!.frame = previewView.bounds
+    }
     
     
     

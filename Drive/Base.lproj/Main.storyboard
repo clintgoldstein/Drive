@@ -19,7 +19,7 @@
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uz6-Hj-zMv">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
@@ -34,6 +34,10 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaF-vt-2ul">
+                                <rect key="frame" x="155" y="402" width="204" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -45,12 +49,13 @@
                             <constraint firstAttribute="trailing" secondItem="40k-qF-B6j" secondAttribute="trailing" id="qw1-rO-N2R"/>
                             <constraint firstItem="uz6-Hj-zMv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rbx-O1-8XW"/>
                             <constraint firstAttribute="trailing" secondItem="uz6-Hj-zMv" secondAttribute="trailing" id="uf6-Yz-MUP"/>
-                            <constraint firstItem="uz6-Hj-zMv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vwX-oL-KNb"/>
+                            <constraint firstItem="uz6-Hj-zMv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" priority="750" id="vwX-oL-KNb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="x6b-Qy-NBj"/>
                     <connections>
                         <outlet property="mapView" destination="uz6-Hj-zMv" id="Rcj-UG-Ko4"/>
+                        <outlet property="previewView" destination="zaF-vt-2ul" id="fmJ-vL-IAl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
